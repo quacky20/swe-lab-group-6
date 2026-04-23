@@ -11,29 +11,33 @@ function Home() {
     const [page, setPage] = useState(1)
     const [maxPage, setMaxPage] = useState(1)
     const [total, setTotal] = useState(0)
+    const [searchParams, setSearchParams] = useState('')
 
     const handleSearch = (params) => {
-        const q = "http://localhost:4000/api/v1/search?q=" + params + "&page=" + page
+        setSearchParams(params)
+        setPage(1) 
+    }
+
+    useEffect(() => {
+        if (!searchParams) return
+        
+        const q = "http://localhost:4000/api/v1/search?q=" + searchParams + "&page=" + page
         axios
             .get(q)
             .then((response) => {
                 setResults(response.data.results)
                 setTotal(response.data.totalCount)
-                const max = Math.floor(total/12 + 1)
-                console.log(max)
+                const max = Math.ceil(response.data.totalCount / 12)
                 setMaxPage(max)
-                console.log(response)
-                console.log(q)
             })
             .catch((error) => {
                 console.log(error.message)
             })
-    }
+    }, [searchParams, page])
 
     const changeView = () => {
         setListView((prev) => !prev)
     }
-
 
     return (
         <div className='min-h-screen p-5 flex flex-col items-center'>

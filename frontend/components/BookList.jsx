@@ -1,8 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function BookList({ details }) {
     return (
-        <div className='p-5 rounded-md w-full font-lexend shadow-lg shadow-purple-400/30 flex flex-col gap-2 justify-between hover:shadow-xl hover:shadow-purple-700/30 duration-300 transition-all cursor-pointer border border-purple-200 text-purple-900 bg-linear-to-br from-purple-50 to-violet-50'>
+        <Link to={`/books/${details.isbn}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className='p-5 rounded-md w-full font-lexend shadow-lg shadow-purple-400/30 flex flex-col gap-2 justify-between hover:shadow-xl hover:shadow-purple-700/30 duration-300 transition-all cursor-pointer border border-purple-200 text-purple-900 bg-linear-to-br from-purple-50 to-violet-50 no-underline'
+        >
             <div className='text-2xl line-clamp-2'>
                 {details.title}
             </div>
@@ -17,7 +22,7 @@ function BookList({ details }) {
                     {details.year}
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

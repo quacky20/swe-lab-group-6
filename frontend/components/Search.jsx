@@ -26,7 +26,7 @@ function Search({ onSearch, onViewChange, page }) {
         if (query.length < 3) {
             throw new Error('Enter 3 characters!')
         }
-        const params = query + "&subject=" + subject + "&year=" + String(year)
+        const params = query + "&filter=" + filter + "&subject=" + subject + "&year=" + String(year)
         onSearch(params)
     }
 

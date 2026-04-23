@@ -50,7 +50,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path='/:bookId' element={<BookDetails />} />
+        <Route path='/books/:isbn' element={<BookDetails />} />
       </Routes>
       <Footer />
     </div>
